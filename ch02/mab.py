@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from solvers import *
 from plots import plot_results
 
