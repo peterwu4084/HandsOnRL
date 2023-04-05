@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 import sys
 sys.path.append('..')
-from rl_utls import *
+from rl_utils import *
 
 
 def dis_to_con(discrete_action, env, action_dim):
