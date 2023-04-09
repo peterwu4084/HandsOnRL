@@ -19,6 +19,9 @@ class ReplayBuffer:
 
     def __len__(self): 
         return len(self.buffer)
+    
+    def size(self):
+        return len(self)
 
 def moving_average(a, window_size):
     cumulative_sum = np.cumsum(np.insert(a, 0, 0)) 
