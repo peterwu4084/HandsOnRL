@@ -60,23 +60,23 @@ n_iterations = 1000
 batch_size = 64
 test_returns = []
 
-# with tqdm(total=n_iterations, desc="Complete") as pbar:
-#     for i in range(n_iterations):
-#         sample_indices = np.random.randint(low=0, high=expert_s.shape[0], size=batch_size)
-#         bc_agent.learn(expert_s[sample_indices], expert_a[sample_indices])
-#         current_return = test_agent(bc_agent, env, 5)
-#         test_returns.append(current_return)
-#         if (i + 1) % 10 == 0:
-#             pbar.set_postfix({'return': '%.3f' % np.mean(test_returns[-10:])})
-#         pbar.update(1)
+with tqdm(total=n_iterations, desc="Complete") as pbar:
+    for i in range(n_iterations):
+        sample_indices = np.random.randint(low=0, high=expert_s.shape[0], size=batch_size)
+        bc_agent.learn(expert_s[sample_indices], expert_a[sample_indices])
+        current_return = test_agent(bc_agent, env, 5)
+        test_returns.append(current_return)
+        if (i + 1) % 10 == 0:
+            pbar.set_postfix({'return': '%.3f' % np.mean(test_returns[-10:])})
+        pbar.update(1)
 
-# torch.save(bc_agent.policy.state_dict(), 'bc_actor_cartpolev0.pth')
-# iteration_list = list(range(len(test_returns)))
-# plt.plot(iteration_list, test_returns)
-# plt.xlabel('Iterations')
-# plt.ylabel('Returns')
-# plt.title('BC on {}'.format(env_name))
-# plt.show()
+torch.save(bc_agent.policy.state_dict(), 'bc_actor_cartpolev0.pth')
+iteration_list = list(range(len(test_returns)))
+plt.plot(iteration_list, test_returns)
+plt.xlabel('Iterations')
+plt.ylabel('Returns')
+plt.title('BC on {}'.format(env_name))
+plt.show()
 
 
 actor_lr = 1e-3
